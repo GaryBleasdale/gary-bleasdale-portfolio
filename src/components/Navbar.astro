@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets';
+import Logo from "../assets/logo.png"
+import MenuIcon from "../assets/menu.svg"
+---
+
+
+<header class="w-full h-20 md:min-h-28 bg-yellow-300 py-2 px-4 flex items-center justify-between container m-auto">
+  <div class="h-full w-auto">
+    <Image src={Logo} alt="Logo" class="h-full w-auto" loading="eager"/>
+  </div>
+
+    <button id="menu-toggle" class="block md:hidden focus:outline-none">
+      <Image src={MenuIcon} alt="Logo" class="h-full w-auto" loading="eager"/>
+    </button>
+    <nav class="hidden md:flex space-x-4">
+        <ul class="flex space-x-8">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div id="mobile-menu" class="fixed left-0 top-0 w-64 h-full bg-yellow-300 transform -translate-x-full transition-transform duration-300">
+        <ul class="flex flex-col space-y-4 p-4">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+</header>
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle?.addEventListener('click', (event) => {
+        mobileMenu?.classList.toggle('-translate-x-full');
+        event.stopPropagation();
+    });
+    document.addEventListener('click', (event) => {
+        const target = event.target as Node;
+        if (target && !mobileMenu?.contains(target) && !menuToggle?.contains(target)) {
+            mobileMenu?.classList.add('-translate-x-full');
+        }
+    });
+</script>
