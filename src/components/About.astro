@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import HeroPlaceholder from "../assets/hero_placeholder.png"
+---
+
+<section class="container py-8 md:py-16 min-h-screen" aria-label="About Me">
+    <div class="grid gap-8 md:grid-cols-2 items-center">
+        <div class="w-full overflow-hidden rounded-lg order-2 md:order-1">
+            <Image
+                src={HeroPlaceholder}
+                alt="Professional headshot"
+                width={500}
+                height={600}
+                class="w-full h-auto object-cover transition duration-300 hover:scale-105"
+            />
+        </div>
+        <div data-animate class="flex flex-col gap-4 transition-all duration-700 ease-out order-1 md:order-2">
+            <h2 class="text-4xl font-bold text-gray-800">About Me</h2>
+            <h3 class="text-2xl font-medium text-gray-600">Your Subheading Here</h3>
+            <p class="text-lg leading-relaxed text-gray-700">
+                Your paragraph text goes here. Make sure to replace this with your actual content.
+                This section should contain meaningful information about you, your background,
+                and what drives you as a developer.
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    [data-animate] {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    
+    [data-animate].animate {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<script>
+    function setupIntersectionObserver() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.intersectionRatio >= 0.3) {
+                    requestAnimationFrame(() => {
+                        entry.target.classList.add('animate');
+                    });
+                }
+            });
+        }, {
+            threshold: [0, 0.3, 0.5, 0.7, 1.0],
+        });
+
+        document.querySelectorAll('[data-animate]').forEach(element => {
+            observer.observe(element);
+        });
+    }
+
+    // Run on initial load
+    setupIntersectionObserver();
+    
+    // Also run on Astro page transitions
+    document.addEventListener('astro:page-load', setupIntersectionObserver);
+</script>
