@@ -3,6 +3,23 @@ import {Image} from 'astro:assets';
 import HeroPlaceholder from "../assets/hero_placeholder.png"
 ---
 
+
+
+<section id="hero" class="container" aria-labelledby="hero" aria-describedby="hero">
+  <div id="hero-content-container" class="flex md:flex-row flex-col items-center">
+    <div id="hero-text" class="md:w-1/2 w-full flex flex-col items-center justify-center p-14">
+      <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center"><div>Tech Solutions for Shopify Merchants</div></h1>
+      <button class="mt-4 px-6 py-3 bg-yellow-300 text-black font-bold rounded-md hover:bg-yellow-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 shadow-md">
+        See services
+      </button>
+    </div>
+    <div id="hero-image-container" class="w-full md:w-1/2 ">
+        <Image src={HeroPlaceholder} id="hero-image" alt="Hero Image" class="w-full"/>
+    </div>
+  </div>
+
+</section>
+
 <style>
   #hero-text {
     animation: slideInLeft 1s ease-out forwards;
@@ -38,18 +55,3 @@ import HeroPlaceholder from "../assets/hero_placeholder.png"
     }
   }
 </style>
-
-<section id="hero" class="container" aria-labelledby="hero" aria-describedby="hero">
-  <div id="hero-content-container" class="flex md:flex-row flex-col items-center">
-    <div id="hero-text" class="md:w-1/2 w-full flex flex-col items-center justify-center p-14">
-      <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center"><div>Tech Solutions for Shopify Merchants</div></h1>
-      <button class="mt-4 px-6 py-3 bg-yellow-300 text-black font-bold rounded-md hover:bg-yellow-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 shadow-md">
-        See services
-      </button>
-    </div>
-    <div id="hero-image-container" class="w-full md:w-1/2 ">
-        <Image src={HeroPlaceholder} id="hero-image" alt="Hero Image" class="w-full"/>
-    </div>
-  </div>
-
-</section>
